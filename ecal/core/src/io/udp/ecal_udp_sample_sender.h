@@ -23,8 +23,7 @@
 
 #pragma once
 
-#include "io/udp/sendreceive/udp_sender.h"
-
+#include "ecal_udp_sender_attr.h"
 
 #ifdef _MSC_VER
 #pragma warning(push, 0) // disable proto warnings
@@ -33,9 +32,6 @@
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#include <memory>
-#include <vector>
 
 namespace eCAL
 {
@@ -46,12 +42,6 @@ namespace eCAL
     public:
       CSampleSender(const IO::UDP::SSenderAttr& attr_);
       size_t Send(const std::string& sample_name_, const eCAL::pb::Sample& ecal_sample_, long bandwidth_);
-
-    private:
-      IO::UDP::SSenderAttr                 m_attr;
-      std::shared_ptr<IO::UDP::CUDPSender> m_udp_sender;
-
-      std::vector<char>                    m_payload;
     };
   }
 }

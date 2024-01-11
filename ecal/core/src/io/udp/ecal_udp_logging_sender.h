@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include "io/udp/sendreceive/udp_sender.h"
+#include "ecal_udp_sender_attr.h"
 
 #ifdef _MSC_VER
 #pragma warning(push, 0) // disable proto warnings
@@ -32,9 +32,6 @@
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-
-#include <memory>
-#include <string>
 
 namespace eCAL
 {
@@ -45,12 +42,6 @@ namespace eCAL
     public:
       CLoggingSender(const IO::UDP::SSenderAttr& attr_);
       size_t Send(const eCAL::pb::LogMessage& ecal_log_message_);
-
-    private:
-      IO::UDP::SSenderAttr                 m_attr;
-      std::shared_ptr<IO::UDP::CUDPSender> m_udp_sender;
-
-      std::string                          m_logmessage_s;
     };
   }
 }

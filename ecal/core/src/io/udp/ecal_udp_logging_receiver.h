@@ -23,13 +23,7 @@
 
 #pragma once
 
-#include "io/udp/sendreceive/udp_receiver.h"
-#include "util/ecal_thread.h"
-
-#include <functional>
-#include <memory>
-#include <string>
-#include <vector>
+#include "ecal_udp_receiver_attr.h"
 
 #ifdef _MSC_VER
 #pragma warning(push, 0) // disable proto warnings
@@ -38,6 +32,8 @@
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
+
+#include <functional>
 
 namespace eCAL
 {
@@ -49,20 +45,9 @@ namespace eCAL
       using LogMessageCallbackT = std::function<void(const eCAL::pb::LogMessage&)>;
 
       CLoggingReceiver(const IO::UDP::SReceiverAttr& attr_, LogMessageCallbackT log_message_callback_);
-      virtual ~CLoggingReceiver();
 
     protected:
-      void ReceiveThread();
-
-      bool                             m_network_mode;
-
-      LogMessageCallbackT              m_log_message_callback;
-
-      IO::UDP::CUDPReceiver            m_udp_receiver;
-      std::shared_ptr<CCallbackThread> m_udp_receiver_thread;
-
-      std::vector<char>                m_msg_buffer;
-      eCAL::pb::LogMessage             m_log_message;
+      LogMessageCallbackT m_log_message_callback;
     };
   }
 }

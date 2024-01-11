@@ -23,16 +23,7 @@
 
 #pragma once
 
-#include "io/udp/sendreceive/udp_receiver.h"
-#include "io/udp/fragmentation/rcv_fragments.h"
-#include "util/ecal_thread.h"
-
-#include <chrono>
-#include <functional>
-#include <memory>
-#include <string>
-#include <unordered_map>
-#include <vector>
+#include "ecal_udp_receiver_attr.h"
 
 #ifdef _MSC_VER
 #pragma warning(push, 0) // disable proto warnings
@@ -41,6 +32,8 @@
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
+
+#include <functional>
 
 namespace eCAL
 {
@@ -53,41 +46,13 @@ namespace eCAL
       using ApplySampleCallbackT = std::function<void(const eCAL::pb::Sample& ecal_sample_, eCAL::pb::eTLayerType layer_)>;
 
       CSampleReceiver(const IO::UDP::SReceiverAttr& attr_, HasSampleCallbackT has_sample_callback_, ApplySampleCallbackT apply_sample_callback_);
-      virtual ~CSampleReceiver();
 
       bool AddMultiCastGroup(const char* ipaddr_);
       bool RemMultiCastGroup(const char* ipaddr_);
 
     protected:
-      void ReceiveThread();
-      void Process(const char* sample_buffer_, size_t sample_buffer_len_);
-
-      HasSampleCallbackT                      m_has_sample_callback;
-      ApplySampleCallbackT                    m_apply_sample_callback;
-
-      IO::UDP::CUDPReceiver                   m_udp_receiver;
-      std::shared_ptr<eCAL::CCallbackThread>  m_udp_receiver_thread;
-
-      std::vector<char>                       m_msg_buffer;
-      eCAL::pb::Sample                        m_ecal_sample;
-
-      std::chrono::steady_clock::time_point   m_cleanup_start;
-
-      class CSampleDefragmentation : public IO::UDP::CMsgDefragmentation
-      {
-      public:
-        explicit CSampleDefragmentation(CSampleReceiver* sample_receiver_);
-        ~CSampleDefragmentation() override;
-
-        int OnMessageCompleted(std::vector<char>&& msg_buffer_) override;
-
-      protected:
-        CSampleReceiver* m_sample_receiver;
-        eCAL::pb::Sample m_ecal_sample;
-      };
-
-      using SampleDefragmentationMapT = std::unordered_map<int32_t, std::shared_ptr<CSampleDefragmentation>>;
-      SampleDefragmentationMapT               m_defrag_sample_map;
+      HasSampleCallbackT   m_has_sample_callback;
+      ApplySampleCallbackT m_apply_sample_callback;
     };
   }
 }

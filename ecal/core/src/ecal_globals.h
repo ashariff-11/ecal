@@ -23,6 +23,13 @@
 
 #pragma once
 
+// TODO: Remove this thing ..
+// ugly extra include to avoid strange windows behaviour "WinSock.h has already been included"
+#include <ecal/ecal_os.h>
+#ifdef ECAL_OS_WINDOWS
+#include <winsock2.h>
+#endif
+
 #include "ecal_global_accessors.h"
 #include "registration/ecal_registration_provider.h"
 #include "registration/ecal_registration_receiver.h"

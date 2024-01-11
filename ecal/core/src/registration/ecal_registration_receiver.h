@@ -30,6 +30,7 @@
 #include <ecal/ecal.h>
 
 #include "ecal_def.h"
+#include "util/ecal_thread.h"
 
 #include "io/udp/ecal_udp_sample_receiver.h"
 
@@ -61,7 +62,7 @@ namespace eCAL
     void Receive();
 
     CMemoryFileBroadcastReader*      m_memfile_broadcast_reader = nullptr;
-    std::shared_ptr<CCallbackThread>  m_memfile_broadcast_reader_thread;
+    std::shared_ptr<CCallbackThread> m_memfile_broadcast_reader_thread;
 
     bool m_created = false;
   };
