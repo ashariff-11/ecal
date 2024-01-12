@@ -579,7 +579,6 @@ namespace eCAL
         wattr.clock     = m_clock;
         wattr.hash      = snd_hash;
         wattr.time      = time_;
-        wattr.bandwidth = m_bandwidth_max_udp;
         wattr.loopback  = loopback;
 
         // prepare send

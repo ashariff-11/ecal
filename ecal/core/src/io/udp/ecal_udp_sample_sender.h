@@ -33,6 +33,8 @@
 #pragma warning(pop)
 #endif
 
+#include <vector>
+
 namespace eCAL
 {
   namespace UDP
@@ -41,7 +43,12 @@ namespace eCAL
     {
     public:
       CSampleSender(const IO::UDP::SSenderAttr& attr_);
-      size_t Send(const std::string& sample_name_, const eCAL::pb::Sample& ecal_sample_, long bandwidth_);
+      size_t Send(const std::string& sample_name_, const eCAL::pb::Sample& ecal_sample_);
+
+    protected:
+      size_t CreateSampleBuffer(const std::string& sample_name_, const eCAL::pb::Sample& ecal_sample_, std::vector<char>& payload_);
+
+      std::vector<char> m_udp_message;
     };
   }
 }

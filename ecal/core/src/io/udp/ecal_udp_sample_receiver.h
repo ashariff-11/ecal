@@ -51,8 +51,12 @@ namespace eCAL
       bool RemMultiCastGroup(const char* ipaddr_);
 
     protected:
+      bool OnCompleteMessage(std::vector<char>&& msg_buffer_);
+
       HasSampleCallbackT   m_has_sample_callback;
       ApplySampleCallbackT m_apply_sample_callback;
+
+      eCAL::pb::Sample     m_ecal_sample;
     };
   }
 }
