@@ -95,6 +95,7 @@ option(ECAL_USE_CLOCKLOCK_MUTEX                "Use native mutex with monotonic 
 # option(ECAL_THIRDPARTY_BUILD_ZLIB              "Build zlib with eCAL"                                              ON)
 option(ECAL_THIRDPARTY_BUILD_ASIO              "Build asio with eCAL"                                              ON)
 option(ECAL_THIRDPARTY_BUILD_CMAKE_FUNCTIONS   "Build CMakeFunctions with eCAL"                                    ON)
+option(ECAL_THIRDPARTY_BUILD_ECALUDP           "Build ecaludp library with eCAL"                                   ON)
 option(ECAL_THIRDPARTY_BUILD_FINEFTP           "Build fineFTP with eCAL"                                           ON)
 option(ECAL_THIRDPARTY_BUILD_FTXUI             "Build ftxui with eCAL"                                             ON)
 option(ECAL_THIRDPARTY_BUILD_GTEST             "Build gtest with eCAL"                                            OFF)
@@ -182,6 +183,7 @@ set(possible_subprojects
   Protobuf
   qwt
   recycle
+  ecaludp
   simpleini
   spdlog
   tclap
@@ -570,6 +572,7 @@ message(STATUS "ECAL_INSTALL_SAMPLE_SOURCES                    : ${ECAL_INSTALL_
 message(STATUS "ECAL_NPCAP_SUPPORT                             : ${ECAL_NPCAP_SUPPORT}")
 message(STATUS "ECAL_THIRDPARTY_BUILD_ASIO                     : ${ECAL_THIRDPARTY_BUILD_ASIO}")
 message(STATUS "ECAL_THIRDPARTY_BUILD_CMAKE_FUNCTIONS          : ${ECAL_THIRDPARTY_BUILD_CMAKE_FUNCTIONS}")
+message(STATUS "ECAL_THIRDPARTY_BUILD_ECALUDP                  : ${ECAL_THIRDPARTY_BUILD_ECALUDP}")
 message(STATUS "ECAL_THIRDPARTY_BUILD_CURL                     : ${ECAL_THIRDPARTY_BUILD_CURL}")
 message(STATUS "ECAL_THIRDPARTY_BUILD_FINEFTP                  : ${ECAL_THIRDPARTY_BUILD_FINEFTP}")
 message(STATUS "ECAL_THIRDPARTY_BUILD_FTXUI                    : ${ECAL_THIRDPARTY_BUILD_FTXUI}")
