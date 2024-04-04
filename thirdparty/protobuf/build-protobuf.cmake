@@ -1,3 +1,6 @@
+set(Protobuf_PROTOC_EXECUTABLE protoc)
+set(Protobuf_VERSION 3.11.4)
+
 include_guard(GLOBAL)
 
 set(protobuf_BUILD_TESTS OFF CACHE BOOL "My option" FORCE)
@@ -63,7 +66,3 @@ endif ()
 if (TARGET protoc)
 set_property(TARGET protoc PROPERTY FOLDER thirdparty/protobuf)
 endif ()
-
-
-set(Protobuf_PROTOC_EXECUTABLE protoc)
-set(Protobuf_VERSION 3.11.4)
