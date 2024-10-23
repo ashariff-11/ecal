@@ -18,8 +18,8 @@
 */
 
 /**
- * @file   module_datatypeinfo.h
- * @brief  Nanobind module for eCAL::SDataTypeInformation struct
+ * @file   module_application_config.h
+ * @brief  Nanobind module for config file of application.h
 **/
 
 #pragma once
