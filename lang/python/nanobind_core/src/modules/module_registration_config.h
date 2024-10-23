@@ -18,8 +18,8 @@
 */
 
 /**
- * @file   module_service_config.h
- * @brief  Nanobind module for structs of file config/service.h
+ * @file   module_registration_config.h
+ * @brief  Nanobind module for structs of file config/registration.h
 **/
 
 #pragma once
