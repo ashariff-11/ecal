@@ -23,13 +23,13 @@
 
 
 #include <modules/module_service_config.h>
-#include <wrappers/wrapper_service_config.h>
+#include <ecal/config/service.h>
 
 void AddServiceConfigStructToModule(nanobind::module_& m_Service)
 {
-    nanobind::class_<eCAL::Service::CNBServiceConfiguration>(m_Service, "Configuration")
+    nanobind::class_<eCAL::Service::Configuration>(m_Service, "ServiceConfiguration")
         .def(nanobind::init<>())  // Default constructor
-        .def_rw("protocol_v0", &eCAL::Service::CNBServiceConfiguration::protocol_v0)
-        .def_rw("protocol_v1", &eCAL::Service::CNBServiceConfiguration::protocol_v1);
+        .def_rw("protocol_v0", &eCAL::Service::Configuration::protocol_v0)
+        .def_rw("protocol_v1", &eCAL::Service::Configuration::protocol_v1);
 }
 

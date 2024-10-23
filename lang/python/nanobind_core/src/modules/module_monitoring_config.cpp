@@ -23,14 +23,13 @@
 
 
 #include <modules/module_monitoring_config.h>
-#include <wrappers/wrapper_monitoring_config.h>
+#include <ecal/config/monitoring.h>
 
 void AddMonitoringConfigStructToModule(nanobind::module_& m_Monitoring)
 {
-    nanobind::class_<eCAL::Monitoring::CNBMonitoringConfiguration>(m_Monitoring, "Configuration")
+    nanobind::class_<eCAL::Monitoring::Configuration>(m_Monitoring, "MonitoringConfiguration")
         .def(nanobind::init<>()) 
-        .def_rw("filter_excl", &eCAL::Monitoring::CNBMonitoringConfiguration::filter_excl)
-        .def_rw("filter_incl", &eCAL::Monitoring::CNBMonitoringConfiguration::filter_incl);
-
+        .def_rw("filter_excl", &eCAL::Monitoring::Configuration::filter_excl)
+        .def_rw("filter_incl", &eCAL::Monitoring::Configuration::filter_incl);
 }
 
