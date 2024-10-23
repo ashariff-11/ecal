@@ -18,7 +18,7 @@
 */
 
 /**
- * @file   module_datatypeinfo.h
+ * @file   module_logging_config.h
  * @brief  Nanobind module for structs of file config/logging.h
 **/
 

@@ -62,12 +62,6 @@ nanobind_add_module(
   wrappers/wrapper_server.h
   wrappers/wrapper_subscriber.cpp
   wrappers/wrapper_subscriber.h
-  wrappers/wrapper_application_config.cpp
-  wrappers/wrapper_application_config.h
-  wrappers/wrapper_logging_config.cpp
-  wrappers/wrapper_logging_config.h
-  wrappers/wrapper_registration_config.cpp
-  wrappers/wrapper_registration_config.h
 #  wrappers/wrapper_subscriber_config.cpp
 #  wrappers/wrapper_subscriber_config.h
 

@@ -18,12 +18,12 @@
 */
 
 /**
- * @brief  Add Publisher config structs to nanobind module
+ * @brief  Add Registration config structs to nanobind module
 **/
 
 
 #include <modules/module_registration_config.h>
-#include <wrappers/wrapper_registration_config.h>
+#include <ecal/config/registration.h>
 
 namespace nb = nanobind;
 
@@ -36,32 +36,32 @@ void AddRegistrationConfigStructToModule(nanobind::module_& m)
     nb::module_ m_UDP = m_Layer.def_submodule("UDP");
 
     // Binding SHM Configuration
-    nb::class_<eCAL::Registration::Layer::SHM::CNBLayerSHMConfiguration>(m_SHM, "LayerSHMConfiguration")
+    nb::class_<eCAL::Registration::Layer::SHM::Configuration>(m_SHM, "LayerSHMConfiguration")
         .def(nb::init<>())  // Default constructor
-        .def_rw("enable", &eCAL::Registration::Layer::SHM::CNBLayerSHMConfiguration::enable)
-        .def_rw("domain", &eCAL::Registration::Layer::SHM::CNBLayerSHMConfiguration::domain)
-        .def_rw("queue_size", &eCAL::Registration::Layer::SHM::CNBLayerSHMConfiguration::queue_size);
+        .def_rw("enable", &eCAL::Registration::Layer::SHM::Configuration::enable)
+        .def_rw("domain", &eCAL::Registration::Layer::SHM::Configuration::domain)
+        .def_rw("queue_size", &eCAL::Registration::Layer::SHM::Configuration::queue_size);
 
     // Binding UDP Configuration
-    nb::class_<eCAL::Registration::Layer::UDP::CNBLayerUDPConfiguration>(m_UDP, "LayerUDPConfiguration")
+    nb::class_<eCAL::Registration::Layer::UDP::Configuration>(m_UDP, "LayerUDPConfiguration")
         .def(nb::init<>())  // Default constructor
-        .def_rw("enable", &eCAL::Registration::Layer::UDP::CNBLayerUDPConfiguration::enable)
-        .def_rw("port", &eCAL::Registration::Layer::UDP::CNBLayerUDPConfiguration::port);
+        .def_rw("enable", &eCAL::Registration::Layer::UDP::Configuration::enable)
+        .def_rw("port", &eCAL::Registration::Layer::UDP::Configuration::port);
 
     // Binding Layer Configuration
-    nb::class_<eCAL::Registration::Layer::CNBLayerConfiguration>(m_Layer, "LayerConfiguration")
+    nb::class_<eCAL::Registration::Layer::Configuration>(m_Layer, "LayerConfiguration")
         .def(nb::init<>())  // Default constructor
-        .def_rw("shm", &eCAL::Registration::Layer::CNBLayerConfiguration::shm)
-        .def_rw("udp", &eCAL::Registration::Layer::CNBLayerConfiguration::udp);
+        .def_rw("shm", &eCAL::Registration::Layer::Configuration::shm)
+        .def_rw("udp", &eCAL::Registration::Layer::Configuration::udp);
 
     // Binding Registration Configuration
-    nb::class_<eCAL::Registration::CNBRegistrationConfiguration>(m_Registration, "RegistrationConfiguration")
+    nb::class_<eCAL::Registration::Configuration>(m_Registration, "RegistrationConfiguration")
         .def(nb::init<>())  // Default constructor
-        .def_rw("registration_timeout", &eCAL::Registration::CNBRegistrationConfiguration::registration_timeout)
-        .def_rw("registration_refresh", &eCAL::Registration::CNBRegistrationConfiguration::registration_refresh)
-        .def_rw("network_enabled", &eCAL::Registration::CNBRegistrationConfiguration::network_enabled)
-        .def_rw("loopback", &eCAL::Registration::CNBRegistrationConfiguration::loopback)
-        .def_rw("host_group_name", &eCAL::Registration::CNBRegistrationConfiguration::host_group_name)
-        .def_rw("layer", &eCAL::Registration::CNBRegistrationConfiguration::layer);
+        .def_rw("registration_timeout", &eCAL::Registration::Configuration::registration_timeout)
+        .def_rw("registration_refresh", &eCAL::Registration::Configuration::registration_refresh)
+        .def_rw("network_enabled", &eCAL::Registration::Configuration::network_enabled)
+        .def_rw("loopback", &eCAL::Registration::Configuration::loopback)
+        .def_rw("host_group_name", &eCAL::Registration::Configuration::host_group_name)
+        .def_rw("layer", &eCAL::Registration::Configuration::layer);
 }
 

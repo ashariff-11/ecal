@@ -18,46 +18,46 @@
 */
 
 /**
- * @brief  Add Publisher config structs to nanobind module
+ * @brief  Add Logging config structs to nanobind module
 **/
 
 
 #include <modules/module_logging_config.h>
-#include <wrappers/wrapper_logging_config.h>
+#include <ecal/config/logging.h>
 
 void AddLoggingConfigStructToModule(nanobind::module_& m)
 {
     // Bind the Console::Configuration structure
-    nanobind::class_<eCAL::Logging::Sinks::Console::CNBConsoleConfiguration>(m, "ConsoleConfiguration")
+    nanobind::class_<eCAL::Logging::Sinks::Console::Configuration>(m, "ConsoleConfiguration")
         .def(nanobind::init<>())  // Constructor binding
-        .def_rw("enable", &eCAL::Logging::Sinks::Console::CNBConsoleConfiguration::enable)
-        .def_rw("filter_log_con", &eCAL::Logging::Sinks::Console::CNBConsoleConfiguration::filter_log_con);
+        .def_rw("enable", &eCAL::Logging::Sinks::Console::Configuration::enable)
+        .def_rw("filter_log_con", &eCAL::Logging::Sinks::Console::Configuration::filter_log_con);
 
     // Bind the File::Configuration structure
-    nanobind::class_<eCAL::Logging::Sinks::File::CNBFileConfiguration>(m, "FileConfiguration")
+    nanobind::class_<eCAL::Logging::Sinks::File::Configuration>(m, "FileConfiguration")
         .def(nanobind::init<>())  // Constructor binding
-        .def_rw("enable", &eCAL::Logging::Sinks::File::CNBFileConfiguration::enable)
-        .def_rw("path", &eCAL::Logging::Sinks::File::CNBFileConfiguration::path)
-        .def_rw("filter_log_file", &eCAL::Logging::Sinks::File::CNBFileConfiguration::filter_log_file);
+        .def_rw("enable", &eCAL::Logging::Sinks::File::Configuration::enable)
+        .def_rw("path", &eCAL::Logging::Sinks::File::Configuration::path)
+        .def_rw("filter_log_file", &eCAL::Logging::Sinks::File::Configuration::filter_log_file);
 
     // Bind the UDP::Configuration structure
-    nanobind::class_<eCAL::Logging::Sinks::UDP::CNBUDPConfiguration>(m, "UDPConfiguration")
+    nanobind::class_<eCAL::Logging::Sinks::UDP::Configuration>(m, "UDPConfiguration")
         .def(nanobind::init<>())  // Constructor binding
-        .def_rw("enable", &eCAL::Logging::Sinks::UDP::CNBUDPConfiguration::enable)
-        .def_rw("port", &eCAL::Logging::Sinks::UDP::CNBUDPConfiguration::port)
-        .def_rw("filter_log_udp", &eCAL::Logging::Sinks::UDP::CNBUDPConfiguration::filter_log_udp);
+        .def_rw("enable", &eCAL::Logging::Sinks::UDP::Configuration::enable)
+        .def_rw("port", &eCAL::Logging::Sinks::UDP::Configuration::port)
+        .def_rw("filter_log_udp", &eCAL::Logging::Sinks::UDP::Configuration::filter_log_udp);
 
     // Bind the Sinks::Configuration structure
-    nanobind::class_<eCAL::Logging::Sinks::CNBSinksConfiguration>(m, "SinksConfiguration")
+    nanobind::class_<eCAL::Logging::Sinks::Configuration>(m, "SinksConfiguration")
         .def(nanobind::init<>())  // Constructor binding
-        .def_rw("console", &eCAL::Logging::Sinks::CNBSinksConfiguration::console)
-        .def_rw("file", &eCAL::Logging::Sinks::CNBSinksConfiguration::file)
-        .def_rw("udp", &eCAL::Logging::Sinks::CNBSinksConfiguration::udp);
+        .def_rw("console", &eCAL::Logging::Sinks::Configuration::console)
+        .def_rw("file", &eCAL::Logging::Sinks::Configuration::file)
+        .def_rw("udp", &eCAL::Logging::Sinks::Configuration::udp);
 
     // Bind the Logging::Configuration structure
-    nanobind::class_<eCAL::Logging::CNBLoggingConfiguration>(m, "LoggingConfiguration")
+    nanobind::class_<eCAL::Logging::Configuration>(m, "LoggingConfiguration")
         .def(nanobind::init<>())  // Constructor binding
-        .def_rw("sinks", &eCAL::Logging::CNBLoggingConfiguration::sinks);
+        .def_rw("sinks", &eCAL::Logging::Configuration::sinks);
 
 }
 

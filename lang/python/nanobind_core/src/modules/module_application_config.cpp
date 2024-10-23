@@ -23,7 +23,7 @@
 
 
 #include <modules/module_application_config.h>
-#include <wrappers/wrapper_application_config.h>
+#include <ecal/config/application.h>
 
 // Import the required Nanobind namespace
 namespace nb = nanobind;
@@ -31,19 +31,19 @@ namespace nb = nanobind;
 void AddApplicationConfigStructToModule(nanobind::module_& m)
 {   
     // Bind the Sys::Configuration structure
-    nb::class_<eCAL::Application::Sys::CNBSysConfiguration>(m, "SysConfiguration")
+    nb::class_<eCAL::Application::Sys::Configuration>(m, "SysConfiguration")
         .def(nb::init<>())  // Constructor binding
-        .def_rw("filter_excl", &eCAL::Application::Sys::CNBSysConfiguration::filter_excl);  // Field binding
+        .def_rw("filter_excl", &eCAL::Application::Sys::Configuration::filter_excl);  // Field binding
 
     // Bind the Startup::Configuration structure
-    nb::class_<eCAL::Application::Startup::CNBStartupConfiguration>(m, "StartupConfiguration")
+    nb::class_<eCAL::Application::Startup::Configuration>(m, "StartupConfiguration")
         .def(nb::init<>())  // Constructor binding
-        .def_rw("terminal_emulator", &eCAL::Application::Startup::CNBStartupConfiguration::terminal_emulator);  // Field binding
+        .def_rw("terminal_emulator", &eCAL::Application::Startup::Configuration::terminal_emulator);  // Field binding
 
     // Bind the main Configuration structure
-    nb::class_<eCAL::Application::CNBApplicationConfiguration>(m, "Configuration")
+    nb::class_<eCAL::Application::Configuration>(m, "ApplicationConfiguration")
         .def(nb::init<>())  // Constructor binding
-        .def_rw("sys", &eCAL::Application::CNBApplicationConfiguration::sys)  // Field binding
-        .def_rw("startup", &eCAL::Application::CNBApplicationConfiguration::startup);  // Field binding
+        .def_rw("sys", &eCAL::Application::Configuration::sys)  // Field binding
+        .def_rw("startup", &eCAL::Application::Configuration::startup);  // Field binding
 }
 
