@@ -23,13 +23,13 @@
 
 
 #include <modules/module_user_arguments_config.h>
-#include <wrappers/wrapper_user_arguments_config.h>
+#include <ecal/config/user_arguments.h>
 
 void AddUserArgumentsConfigStructToModule(nanobind::module_& m)
 {
-    nanobind::class_<eCAL::Cli::CNBCliConfiguration>(m, "Configuration")
+    nanobind::class_<eCAL::Cli::Configuration>(m, "CliConfiguration")
         .def(nanobind::init<>())  // Default constructor
-        .def_rw("user_yaml", &eCAL::Cli::CNBCliConfiguration::user_yaml)
-        .def_rw("dump_config", &eCAL::Cli::CNBCliConfiguration::dump_config);
+        .def_rw("user_yaml", &eCAL::Cli::Configuration::user_yaml)
+        .def_rw("dump_config", &eCAL::Cli::Configuration::dump_config);
 }
 
