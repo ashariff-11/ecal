@@ -38,6 +38,10 @@
 #include <cstddef>
 #include <ecal/ecal_types.h>
 
+#include <ecal/config/time.h>
+#include <ecal/ecal_os.h>
+#include <ecal/types/ecal_custom_data_types.h>
+
 /**
  * @brief  Function to Add Nanobind module
  *

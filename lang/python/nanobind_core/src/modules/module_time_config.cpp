@@ -23,13 +23,13 @@
 
 
 #include <modules/module_time_config.h>
-#include <wrappers/wrapper_time_config.h>
+#include <ecal/config/time.h>
 
 void AddTimeConfigStructToModule(nanobind::module_& module)
 {   
-    nanobind::class_<eCAL::Time::CNBTimeConfiguration>(module, "Configuration")
+    nanobind::class_<eCAL::Time::Configuration>(module, "TimeConfiguration")
         .def(nanobind::init<>())  // Default constructor
-        .def_rw("timesync_module_rt", &eCAL::Time::CNBTimeConfiguration::timesync_module_rt)
-        .def_rw("timesync_module_replay", &eCAL::Time::CNBTimeConfiguration::timesync_module_replay);
+        .def_rw("timesync_module_rt", &eCAL::Time::Configuration::timesync_module_rt)
+        .def_rw("timesync_module_replay", &eCAL::Time::Configuration::timesync_module_replay);
 }
 
