@@ -23,34 +23,50 @@
 
 
 #include <modules/module_publisher_config.h>
-#include <wrappers/wrapper_publisher_config.h>
+#include <ecal/config/publisher.h>
+
+namespace nb = nanobind;
 
 void AddPublisherConfigStructToModule(nanobind::module_& module)
 {
-    nanobind::class_<eCAL::Publisher::SHM::CNBSHMConfiguration>(module, "SHMConfiguration")
-        .def(nanobind::init<>())
-        .def_rw("enable", &eCAL::Publisher::SHM::CNBSHMConfiguration::enable)
-        .def_rw("zero_copy_mode", &eCAL::Publisher::SHM::CNBSHMConfiguration::zero_copy_mode)
-        .def_rw("acknowledge_timeout_ms", &eCAL::Publisher::SHM::CNBSHMConfiguration::acknowledge_timeout_ms)
-        .def_rw("memfile_min_size_bytes", &eCAL::Publisher::SHM::CNBSHMConfiguration::memfile_min_size_bytes)
-        .def_rw("memfile_reserve_percent", &eCAL::Publisher::SHM::CNBSHMConfiguration::memfile_reserve_percent)
-        .def_rw("memfile_buffer_count", &eCAL::Publisher::SHM::CNBSHMConfiguration::memfile_buffer_count);
+    nb::module_ m_eCAL = module.def_submodule("eCAL");
+    nb::module_ m_Publisher = m_eCAL.def_submodule("Publisher");
+    nb::module_ m_Layer = m_Publisher.def_submodule("Layer");
 
-    nanobind::class_<eCAL::Publisher::UDP::CNBUDPConfiguration>(module, "UDPConfiguration")
-        .def(nanobind::init<>())
-        .def_rw("enable", &eCAL::Publisher::UDP::CNBUDPConfiguration::enable)
-        .def_rw("loopback", &eCAL::Publisher::UDP::CNBUDPConfiguration::loopback)
-        .def_rw("sndbuf_size_bytes", &eCAL::Publisher::UDP::CNBUDPConfiguration::sndbuf_size_bytes);
+    // SHM Configuration Binding
+    nb::class_<eCAL::Publisher::Layer::SHM::Configuration>(m_Layer, "SHM_Configuration")
+        .def(nb::init<>())
+        .def_rw("enable", &eCAL::Publisher::Layer::SHM::Configuration::enable)
+        .def_rw("zero_copy_mode", &eCAL::Publisher::Layer::SHM::Configuration::zero_copy_mode)
+        .def_rw("acknowledge_timeout_ms", &eCAL::Publisher::Layer::SHM::Configuration::acknowledge_timeout_ms)
+        .def_rw("memfile_buffer_count", &eCAL::Publisher::Layer::SHM::Configuration::memfile_buffer_count)
+        .def_rw("memfile_min_size_bytes", &eCAL::Publisher::Layer::SHM::Configuration::memfile_min_size_bytes)
+        .def_rw("memfile_reserve_percent", &eCAL::Publisher::Layer::SHM::Configuration::memfile_reserve_percent);
 
-    nanobind::class_<eCAL::Publisher::TCP::CNBTCPConfiguration>(module, "TCPConfiguration")
-        .def(nanobind::init<>())
-        .def_rw("enable", &eCAL::Publisher::TCP::CNBTCPConfiguration::enable);
+    // UDP Configuration Binding
+    nb::class_<eCAL::Publisher::Layer::UDP::Configuration>(m_Layer, "UDP_Configuration")
+        .def(nb::init<>())
+        .def_rw("enable", &eCAL::Publisher::Layer::UDP::Configuration::enable);
 
-    nanobind::class_<eCAL::Publisher::CNBPublisherConfiguration>(module, "PublisherConfiguration")
-        .def(nanobind::init<>())
-        .def_rw("shm", &eCAL::Publisher::CNBPublisherConfiguration::shm)
-        .def_rw("udp", &eCAL::Publisher::CNBPublisherConfiguration::udp)
-        .def_rw("tcp", &eCAL::Publisher::CNBPublisherConfiguration::tcp)
-        .def_rw("share_topic_type", &eCAL::Publisher::CNBPublisherConfiguration::share_topic_type)
-        .def_rw("share_topic_description", &eCAL::Publisher::CNBPublisherConfiguration::share_topic_description);
+    // TCP Configuration Binding
+    nb::class_<eCAL::Publisher::Layer::TCP::Configuration>(m_Layer, "TCP_Configuration")
+        .def(nb::init<>())
+        .def_rw("enable", &eCAL::Publisher::Layer::TCP::Configuration::enable);
+
+    // Layer Configuration Binding
+    nb::class_<eCAL::Publisher::Layer::Configuration>(m_Layer, "LayerConfiguration")
+        .def(nb::init<>())
+        .def_rw("shm", &eCAL::Publisher::Layer::Configuration::shm)
+        .def_rw("udp", &eCAL::Publisher::Layer::Configuration::udp)
+        .def_rw("tcp", &eCAL::Publisher::Layer::Configuration::tcp);
+
+    // Publisher Configuration Binding
+    nb::class_<eCAL::Publisher::Configuration>(m_Publisher, "PublisherConfiguration")
+        .def(nb::init<>())
+        .def_rw("layer", &eCAL::Publisher::Configuration::layer)
+        .def_rw("layer_priority_local", &eCAL::Publisher::Configuration::layer_priority_local)
+        .def_rw("layer_priority_remote", &eCAL::Publisher::Configuration::layer_priority_remote)
+        .def_rw("share_topic_type", &eCAL::Publisher::Configuration::share_topic_type)
+        .def_rw("share_topic_description", &eCAL::Publisher::Configuration::share_topic_description);
+
 }
