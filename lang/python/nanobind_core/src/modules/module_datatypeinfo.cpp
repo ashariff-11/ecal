@@ -33,4 +33,17 @@ void AddDataTypeInfoStructToModule(nanobind::module_& module)
         .def_rw("name", &eCAL::CNBDataTypeInformation::name)
         .def_rw("encoding", &eCAL::CNBDataTypeInformation::encoding)
         .def_rw("descriptor", &eCAL::CNBDataTypeInformation::descriptor);
+
+    nanobind::class_<eCAL::Types::IpAddressV4>(module, "IpAddressV4")
+        .def(nanobind::init<const std::string&>(), nanobind::arg("ip_address"))
+
+        // Member function binding
+        .def("Get", &eCAL::Types::IpAddressV4::Get, "Returns the IP address as a string.")
+
+        // Assignment operator overloads
+        .def("assign", nanobind::overload_cast<const std::string&>(&eCAL::Types::IpAddressV4::operator=), nanobind::arg("ip_string"))
+        .def("assign", nanobind::overload_cast<const char*>(&eCAL::Types::IpAddressV4::operator=), nanobind::arg("ip_string"))
+
+        // Conversion to string
+        .def("__str__", [](const eCAL::Types::IpAddressV4& self) { return std::string(self); });
 }

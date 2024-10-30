@@ -47,8 +47,8 @@ nanobind_add_module(
   modules/module_subscriber_config.h
   modules/module_time_config.cpp
   modules/module_time_config.h
-#  modules/module_transport_layer_config.cpp
-#  modules/module_transport_layer_config.h
+  modules/module_transport_layer_config.cpp
+  modules/module_transport_layer_config.h
   modules/module_user_arguments_config.cpp
   modules/module_user_arguments_config.h
   modules/module_util.cpp

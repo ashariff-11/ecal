@@ -50,7 +50,7 @@
 #include <modules/module_logging_config.h>
 #include <modules/module_subscriber_config.h>
 #include <modules/module_time_config.h>
-//#include <modules/module_transport_layer_config.h>
+#include <modules/module_transport_layer_config.h>
 #include <modules/module_user_arguments_config.h>
 #include <modules/module_util.h>
 
@@ -71,7 +71,7 @@ NB_MODULE(nanobind_core, m) {
     AddPublisherConfigStructToModule(m);
     AddSubscriberConfigStructToModule(m);
     AddTimeConfigStructToModule(m);
-//    AddTransportLayerConfigStructToModule(m);
+    AddTransportLayerConfigStructToModule(m);
     AddUserArgumentsConfigStructToModule(m);
 
     AddCoreFuncToModule(m);
