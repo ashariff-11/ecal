@@ -40,16 +40,18 @@
 #include <modules/module_datatypeinfo.h>
 #include <modules/module_publisher.h>
 #include <modules/module_application_config.h>
+#include <modules/module_configuration_config.h>
 #include <modules/module_monitoring_config.h>
 #include <modules/module_publisher_config.h>
 #include <modules/module_registration_config.h>
 #include <modules/module_service_config.h>
-#include <modules/module_time_config.h>
-#include <modules/module_user_arguments_config.h>
 #include <modules/module_server.h>
 #include <modules/module_subscriber.h>
 #include <modules/module_logging_config.h>
 #include <modules/module_subscriber_config.h>
+#include <modules/module_time_config.h>
+//#include <modules/module_transport_layer_config.h>
+#include <modules/module_user_arguments_config.h>
 #include <modules/module_util.h>
 
 
@@ -60,15 +62,17 @@ NB_MODULE(nanobind_core, m) {
     AddPublisherClassToModule(m);
     AddClientClassToModule(m);
     AddServerClassToModule(m);
+    AddApplicationConfigStructToModule(m);
+    AddConfigurationConfigStructToModule(m);
     AddLoggingConfigStructToModule(m);
     AddServiceConfigStructToModule(m);
     AddRegistrationConfigStructToModule(m);
-    AddApplicationConfigStructToModule(m);
     AddMonitoringConfigStructToModule(m);
-    AddTimeConfigStructToModule(m);
-    AddUserArgumentsConfigStructToModule(m);
     AddPublisherConfigStructToModule(m);
     AddSubscriberConfigStructToModule(m);
+    AddTimeConfigStructToModule(m);
+//    AddTransportLayerConfigStructToModule(m);
+    AddUserArgumentsConfigStructToModule(m);
 
     AddCoreFuncToModule(m);
     AddUtilFuncToModule(m);
