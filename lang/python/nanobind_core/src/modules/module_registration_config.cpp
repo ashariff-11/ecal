@@ -29,21 +29,20 @@ namespace nb = nanobind;
 
 void AddRegistrationConfigStructToModule(nanobind::module_& m)
 {
-    nb::module_ m_eCAL = m.def_submodule("eCAL");
-    nb::module_ m_Registration = m_eCAL.def_submodule("Registration");
+    nb::module_ m_Registration = m.def_submodule("Registration");
     nb::module_ m_Layer = m_Registration.def_submodule("Layer");
     nb::module_ m_SHM = m_Layer.def_submodule("SHM");
     nb::module_ m_UDP = m_Layer.def_submodule("UDP");
 
     // Binding SHM Configuration
-    nb::class_<eCAL::Registration::Layer::SHM::Configuration>(m_SHM, "LayerSHMConfiguration")
+    nb::class_<eCAL::Registration::Layer::SHM::Configuration>(m_SHM, "SHMConfiguration")
         .def(nb::init<>())  // Default constructor
         .def_rw("enable", &eCAL::Registration::Layer::SHM::Configuration::enable)
         .def_rw("domain", &eCAL::Registration::Layer::SHM::Configuration::domain)
         .def_rw("queue_size", &eCAL::Registration::Layer::SHM::Configuration::queue_size);
 
     // Binding UDP Configuration
-    nb::class_<eCAL::Registration::Layer::UDP::Configuration>(m_UDP, "LayerUDPConfiguration")
+    nb::class_<eCAL::Registration::Layer::UDP::Configuration>(m_UDP, "UDPConfiguration")
         .def(nb::init<>())  // Default constructor
         .def_rw("enable", &eCAL::Registration::Layer::UDP::Configuration::enable)
         .def_rw("port", &eCAL::Registration::Layer::UDP::Configuration::port);
