@@ -25,22 +25,36 @@
 #include <modules/module_logging_config.h>
 #include <ecal/config/logging.h>
 
+enum NB_eCAL_Logging_eLogLevel
+{
+    nb_log_level_none = 0,
+    nb_log_level_all = 255,
+    nb_log_level_info = 1,
+    nb_log_level_error = 4,
+    nb_log_level_fatal = 8,
+    nb_log_filter_default = 15,
+    nb_log_level_debug1 = 16,
+    nb_log_level_debug2 = 32,
+    nb_log_level_warning = 2,
+    nb_log_level_debug3 = 64,
+    nb_log_level_debug4 = 128,
+};
 
 
 void AddLoggingConfigStructToModule(nanobind::module_& m)
 {
-    nanobind::enum_<eCAL_Logging_eLogLevel>(m, "eCAL_Logging_Filter")
-        .value("log_level_none", log_level_none)
-        .value("log_level_all", log_level_all)
-        .value("log_level_info", log_level_info)
-        .value("log_level_warning", log_level_warning)
-        .value("log_level_error", log_level_error)
-        .value("log_level_fatal", log_level_fatal)
-        .value("log_filter_default", 15)                //Line has to be discussed
-        .value("log_level_debug1", log_level_debug1)
-        .value("log_level_debug2", log_level_debug2)
-        .value("log_level_debug3", log_level_debug3)
-        .value("log_level_debug4", log_level_debug4);
+    nanobind::enum_<NB_eCAL_Logging_eLogLevel>(m, "eCAL_Logging_Filter")
+        .value("log_level_none", nb_log_level_none)
+        .value("log_level_all", nb_log_level_all)
+        .value("log_level_info", nb_log_level_info)
+        .value("log_level_warning", nb_log_level_warning)
+        .value("log_level_error", nb_log_level_error)
+        .value("log_level_fatal", nb_log_level_fatal)
+        .value("log_filter_default", nb_log_filter_default)                //Line has to be discussed
+        .value("log_level_debug1", nb_log_level_debug1)
+        .value("log_level_debug2", nb_log_level_debug2)
+        .value("log_level_debug3", nb_log_level_debug3)
+        .value("log_level_debug4", nb_log_level_debug4);
 
     // Bind the Console::Configuration structure
     nanobind::class_<eCAL::Logging::Sinks::Console::Configuration>(m, "ConsoleConfiguration")
