@@ -29,8 +29,7 @@ namespace nb = nanobind;
 
 void AddPublisherConfigStructToModule(nanobind::module_& module)
 {
-    nb::module_ m_eCAL = module.def_submodule("eCAL");
-    nb::module_ m_Publisher = m_eCAL.def_submodule("Publisher");
+    nb::module_ m_Publisher = module.def_submodule("Publisher");
     nb::module_ m_Layer = m_Publisher.def_submodule("Layer");
 
     // SHM Configuration Binding
