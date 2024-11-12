@@ -71,7 +71,7 @@ void AddTransportLayerConfigStructToModule(nanobind::module_& m)
         .def_rw("join_all_interfaces", &eCAL::TransportLayer::UDP::Configuration::join_all_interfaces)
         .def_rw("npcap_enabled", &eCAL::TransportLayer::UDP::Configuration::npcap_enabled)
         .def_rw("network", &eCAL::TransportLayer::UDP::Configuration::network)
-        .def_rw("local", &eCAL::TransportLayer::UDP::Configuration::local);
+        .def_ro("local", &eCAL::TransportLayer::UDP::Configuration::local);
 
     // TCP Configuration Binding
     nb::class_<eCAL::TransportLayer::TCP::Configuration>(m_TCP, "TCPConfiguration")
