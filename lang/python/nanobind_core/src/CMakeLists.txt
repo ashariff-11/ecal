@@ -78,3 +78,5 @@ install(TARGETS nanobind_core LIBRARY DESTINATION nanobind_core)
 if(WIN32)
   set_property(TARGET nanobind_core PROPERTY FOLDER lang/python/core)
 endif()
+
+ecal_python_set_output_directory(nanobind_core)
