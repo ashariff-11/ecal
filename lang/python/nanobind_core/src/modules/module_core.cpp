@@ -46,8 +46,8 @@ void AddCoreFuncToModule(nanobind::module_& module)
     //   m.def("initialize", [](int nb_argc_, char *nb_argv_, const char* nb_unit_name_, unsigned int nb_components_)
     //       { return eCAL::Initialize(nb_argc_, nb_argv_, nb_unit_name_, nb_components_); });
     module.def("initialize", [](std::vector<std::string> nb_args_, std::string nb_unit_name_)
-        { return eCAL::Initialize(nb_args_, nb_unit_name_.c_str(), eCAL::Init::Default); });
+      { return eCAL::Initialize(nb_args_, nb_unit_name_.c_str(), eCAL::Init::Default); });
     module.def("initialize", []()
-        { return eCAL::Initialize(); });
+      { return eCAL::Initialize(); });
 
 }

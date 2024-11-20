@@ -62,7 +62,7 @@ namespace eCAL
          *
          * @return  True if succeeded, false if not.
         **/
-        bool WrapAddMethodCB(const std::string& nb_method, const std::string& nb_req_type, const std::string& nb_resp_type, const std::string& nb_request, nanobind::callable callback_);
+        bool WrapAddMethodCB(const std::string& nb_method, const std::string& nb_req_type, const std::string& nb_resp_type, nanobind::callable callback_);
 
         /**
          * @brief Wrapper for Add callback function for service client events.

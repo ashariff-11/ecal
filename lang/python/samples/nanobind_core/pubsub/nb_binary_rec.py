@@ -1,6 +1,7 @@
 import sys
+from time import sleep
 
-import nanobind_core as ecal_core
+import ecal.nanobind_core as ecal_core
 
 def main():
   # print eCAL version and date
@@ -10,12 +11,13 @@ def main():
   ecal_core.initialize()
   
   # create subscriber
-  sub = ecal_core.NBSubscriber("Hello")
+  sub = ecal_core.Subscriber("blob")
   
   # receive messages
   while ecal_core.ok():
-    msg = sub.receive()
+    msg = sub.receive(0)
     print("Received:  {} ".format(msg))
+    sleep(0.1)
   
   # finalize eCAL API
   ecal_core.finalize()

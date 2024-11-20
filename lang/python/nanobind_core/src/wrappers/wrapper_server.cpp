@@ -36,7 +36,7 @@ namespace eCAL
 
     CNBSrvServer::CNBSrvServer(const std::string& service_name) : CServiceServer(service_name) { }
 
-    bool CNBSrvServer::WrapAddMethodCB(const std::string& nb_method, const std::string& nb_req_type, const std::string& nb_resp_type, const std::string& nb_request, nanobind::callable callback_)
+    bool CNBSrvServer::WrapAddMethodCB(const std::string& nb_method, const std::string& nb_req_type, const std::string& nb_resp_type, nanobind::callable callback_)
     {
         assert(IsConnected());
         {

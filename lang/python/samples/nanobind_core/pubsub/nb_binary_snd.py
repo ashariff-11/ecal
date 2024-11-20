@@ -1,7 +1,7 @@
 import sys
 import time
 
-import nanobind_core as ecal_core
+import ecal.nanobind_core as ecal_core
 
 def main():
   # print eCAL version and date
@@ -11,7 +11,7 @@ def main():
   ecal_core.initialize()
 
   # create publisher
-  pub = ecal_core.Publisher("Hello")
+  pub = ecal_core.Publisher("blob")
   msg = "HELLO WORLD FROM PYTHON"
   
   # send messages
@@ -20,7 +20,7 @@ def main():
     i = i + 1
     current_message = "{} {:6d}".format(msg, i)
     print("Sending: {}".format(current_message))
-    pub.send(current_message,1234)
+    pub.send(current_message)
     time.sleep(0.5)
   
   # finalize eCAL API

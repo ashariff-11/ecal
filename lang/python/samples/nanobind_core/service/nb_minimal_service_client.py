@@ -20,7 +20,7 @@ from pickle import TRUE
 import sys
 import time
 
-import nanobind_core as ecal_core
+import ecal.nanobind_core as ecal_core
 
   # define the client response callback to catch server responses
 def client_resp_callback(service_info, response):
@@ -39,7 +39,7 @@ def main():
   ecal_core.initialize()
   
   # create a client for the "DemoService" service
-  client = ecal_core.ServiceClient("DemoService")
+  client = ecal_core.ServiceClient("service1")
     
   # and add it to the client
   client.add_response_callback(client_resp_callback)

@@ -29,8 +29,8 @@ namespace nb = nanobind;
 
 void AddSubscriberConfigStructToModule(nanobind::module_& module)
 {
-    nb::module_ m_Subscriber = module.def_submodule("Subscriber");
-    nb::module_ m_Layer = m_Subscriber.def_submodule("Layer");
+    nb::module_ m_Subscriber = module.def_submodule("subscriber");
+    nb::module_ m_Layer = m_Subscriber.def_submodule("layer");
 
     // Binding SHM Layer Configuration
     nb::class_<eCAL::Subscriber::Layer::SHM::Configuration>(m_Layer, "SHM_Configuration")

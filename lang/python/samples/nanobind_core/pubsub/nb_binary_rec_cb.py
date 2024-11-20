@@ -19,7 +19,7 @@
 import sys
 import time
 
-import nanobind_core as ecal_core
+import ecal.nanobind_core as ecal_core
 
 # eCAL receive callback
 def callback(topic_name, msg, time):
@@ -33,7 +33,7 @@ def main():
   ecal_core.initialize()
 
   # create subscriber and connect callback
-  sub = ecal_core.Subscriber("Hello")
+  sub = ecal_core.Subscriber("blob")
   sub.add_receive_callback(callback)
   
   # idle main thread

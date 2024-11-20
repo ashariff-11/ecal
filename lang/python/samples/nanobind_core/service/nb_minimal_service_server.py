@@ -19,18 +19,18 @@
 import sys
 import time
 
-import nanobind_core as ecal_core
-
-# define the server method "foo" function
-def foo_req_callback(method_name, req_type, resp_type, request):
-    print("'DemoService' method '{}' called with {}".format(method_name, request))
-    #return True #, bytes("thank you for calling foo :-)", "ascii")
-    return 0, "pong"
+import ecal.nanobind_core as ecal_core
 
 # define the server method "ping" function
-def ping_req_callback(method_name, req_type, resp_type, request):
-    print("'DemoService' method '{}' called with {}".format(method_name, request))
-    return 0, bytes("pong", "ascii")
+def echo_req_callback(method_name, req_type, resp_type, request):
+    print("Method called'{}' called with {}".format(method_name, request))
+    return 0, request
+
+# define the server method "ping" function
+def reverse_req_callback(method_name, req_type, resp_type, request):
+    print("Method called'{}' called with {}".format(method_name, request))
+    response = request[::-1] #reverse the request
+    return 0, response
 
 def main():
   # print eCAL version and date
@@ -38,23 +38,18 @@ def main():
   
   # initialize eCAL API
   ecal_core.initialize()
+  ecal_core.set_unitname("py_minimal_service_server")
   
-  # initialize eCAL API
- #  ecal_core.initialize(sys.argv, "py_minimal_service_server")
-  
-  # set process state
- #  ecal_core.set_process_state(1, 1, "I feel good")
-
   # create a server for the "DemoService" service
-  server = ecal_core.ServiceServer("DemoService")
+  server = ecal_core.ServiceServer("service1")
 
   # define the server methods and connect them to the callbacks
-  server.add_method_callback("foo",  "string",    "string",    foo_req_callback)
-  server.add_method_callback("ping", "ping_type", "pong_type", ping_req_callback)
+  server.add_method_callback("echo", "", "", echo_req_callback)
+  server.add_method_callback("reverse", "", "", reverse_req_callback)
 
   # idle
   while(ecal_core.ok()):
-    time.sleep(1.0)
+    time.sleep(0.1)
 
   # destroy server
   server.destroy()
