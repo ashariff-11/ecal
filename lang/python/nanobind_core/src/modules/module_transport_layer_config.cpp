@@ -27,12 +27,11 @@
 
 namespace nb = nanobind;
 
-void AddTransportLayerConfigStructToModule(nanobind::module_& m)
+void AddTransportLayerConfigStructToModule(nanobind::module_& module)
 {
-    nb::module_ m_eCAL = m.def_submodule("eCAL");
-    nb::module_ m_TransportLayer = m_eCAL.def_submodule("TransportLayer");
-    nb::module_ m_UDP = m_TransportLayer.def_submodule("UDP");
-    nb::module_ m_TCP = m_TransportLayer.def_submodule("TCP");
+    nb::module_ m_TransportLayer = module.def_submodule("transportlayer");
+    nb::module_ m_UDP = m_TransportLayer.def_submodule("udp");
+    nb::module_ m_TCP = m_TransportLayer.def_submodule("tcp");
 
     // UDP Network Configuration Binding
     nb::class_<eCAL::TransportLayer::UDP::Network::Configuration>(m_UDP, "NetworkConfiguration")
@@ -43,19 +42,6 @@ void AddTransportLayerConfigStructToModule(nanobind::module_& m)
     // UDP Local Configuration Binding
     nb::class_<eCAL::TransportLayer::UDP::Local::Configuration>(m_UDP, "LocalConfiguration")
         .def(nb::init<>())
-#if 0
-        // Property for 'group' with automatic string conversion
-        .def_prop_rw(
-            "group",
-            [](const eCAL::TransportLayer::UDP::Local::Configuration& self) -> std::string {
-                return self.group.Get();  // Get the IP as a string
-            },
-            [](eCAL::TransportLayer::UDP::Local::Configuration& self, const std::string& value) {
-                self.group = value;  // Directly assign a string to 'group' using overloaded assignment
-            },
-            "UDP multicast group base as a string"
-        )
-#endif
         .def_rw("group", &eCAL::TransportLayer::UDP::Local::Configuration::group)
         .def_rw("ttl", &eCAL::TransportLayer::UDP::Local::Configuration::ttl);
 

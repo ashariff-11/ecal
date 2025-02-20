@@ -1,5 +1,5 @@
 import unittest
-import nanobind_core as ecal
+import ecal.nanobind_core as ecal
 
 class TestConsoleConfiguration(unittest.TestCase):
     

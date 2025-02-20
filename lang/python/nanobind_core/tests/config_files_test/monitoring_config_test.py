@@ -1,5 +1,5 @@
 import unittest
-import nanobind_core as ecal_module
+import ecal.nanobind_core as ecal_module
 
 class TestMonitoringConfiguration(unittest.TestCase):
     def setUp(self):
